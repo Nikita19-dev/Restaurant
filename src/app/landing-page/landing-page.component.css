@@ -11,13 +11,13 @@
 
   color: white;
   overflow: hidden;
-    height: 100vh
+  height: 100vh
 }
 
 .top-left {
   position: absolute;
   top: 3%;
-  left:2%;
+  left: 2%;
   font-size: 2rem;
   color: white
 }
@@ -26,14 +26,34 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  color:#fff;
+  color: #fff;
   height: 8vh;
   margin-top: -10vh;
   width: 30%;
   font-size: 1.5rem;
- 
+
 }
-a, a:hover, a:focus, a:active {
+
+a,
+a:hover,
+a:focus,
+a:active {
   text-decoration: none;
   color: inherit;
+}
+
+
+.item {
+  position: absolute;
+  bottom: 45%;
+  right: 5%;
+  font-size: 2rem;
+  /* width: -moz-fit-content; */
+  width: 40%;
+  line-height: 1
+}
+
+.flex-container {
+  padding: 10px;
+  width: 20em;
 }
