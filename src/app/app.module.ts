@@ -5,16 +5,26 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { ContactComponent } from './contact/contact.component';
+import { LocateComponent } from './locate/locate.component';
+import { MenuComponent } from './menu/menu.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCardModule } from '@angular/material/card';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
-    ContactComponent
+    ContactComponent,
+    LocateComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatCardModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
