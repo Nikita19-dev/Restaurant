@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-contact',
@@ -6,10 +9,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
+  feedback = '[a-zA-Z]'
+  durationInSeconds = 5;
+  contactform: any;
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder, private _snackBar: MatSnackBar) {
 
-  ngOnInit(): void {
   }
 
+
+
+  ngOnInit(): void {
+    this.contactform = this.formBuilder.group({
+      username: ['', [Validators.required]],
+      phoneno: ['', Validators.required],
+      emailid: ['', Validators.email],
+      feedback: ['', Validators.required]
+
+
+    })
+  }
+  openSnackBar() {
+    this._snackBar.open("Hurrey!🙂. Your request submitted successfully", '', { duration: 1000 });
+  }
 }

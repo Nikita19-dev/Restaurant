@@ -1,1 +1,62 @@
-<p>contact works!</p>
+<div class="container">
+    <a href="">
+        <div class="navbar">
+            <div id="Brand">
+                Food dudes
+            </div>
+        </div>
+    </a>
+    <div class="flex-container">
+        <div class="contact-text">Contact Us</div>
+    </div>
+    <!-- <img src="assets/header.jpg" alt="contactus image" class="contactus-image"> -->
+    <div class="form-container">
+        <form [formGroup]="contactform" class="contact-form">
+            <mat-form-field appearance="outline">
+                <input matInput placeholder="Name" id="username" name="username" formControlName="username">
+
+                <mat-error *ngIf="contactform.controls['username'].invalid && (contactform.controls['username'].dirty ||
+                    contactform.controls['username'].touched)" class="alert">
+                    <span *ngIf="contactform.controls['username'].errors.required">
+                        Please enter username
+                    </span>
+                </mat-error>
+
+
+            </mat-form-field>
+
+
+
+            <mat-form-field appearance="outline">
+                <input matInput placeholder="PhoneNo" id="phoneno" name="phoneno" formControlName="phoneno">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <input matInput placeholder="Email" id="emailid" name="emailid" formControlName="emailid">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <textarea matInput rows="5" placeholder="Feedback" id="feedback" name="feedback"
+                    formControlName="feedback"></textarea>
+            </mat-form-field>
+            <!-- <mat-form-field appearance="fill">
+                <mat-label>Message</mat-label>
+                <input matInput value="Your request submitted successfully" #message>
+            </mat-form-field> -->
+            <div class="sub-button">
+                <button mat-stroked-button (click)="openSnackBar()" [disabled]="contactform.invalid">Submit</button>
+            </div>
+
+        </form>
+    </div>
+
+    <div class="find-here">
+        Find us here
+    </div>
+    <div class="gogglemap">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.652224705449!2d77.51271671413484!3d12.9300596192885!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae3ef7f2f8e5fb%3A0xc1bf30dd092ebfa3!2sPaakashala%20%40%20Rajarajeshwari%20Nagar!5e0!3m2!1sen!2sin!4v1659270663555!5m2!1sen!2sin"
+            width="80%" height="600" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+    </div>
+
+</div>

@@ -1,0 +1,59 @@
+.navbar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+    background-color: #1D4A4D;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 8%;
+    font-size: 2rem;
+    padding-left: 2%;
+    color: white;
+    z-index: 3;
+
+}
+
+
+.flex-container {
+    margin-top: 10rem;
+    display: flex;
+    justify-content: center;
+    font-size: 6.5rem;
+    color: black;
+    height: 16vh;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    width: 60vw;
+}
+
+.form-container,
+.sub-button {
+    display: flex;
+    justify-content: center;
+
+}
+
+#button {
+    width: fit-content;
+    padding: 0.4rem 4rem;
+    font-size: 1.2rem;
+}
+
+.find-here {
+    margin-top: 10rem;
+    display: flex;
+    justify-content: center;
+    font-size: 6.5rem;
+    color: black;
+}
+
+.gogglemap {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+}
