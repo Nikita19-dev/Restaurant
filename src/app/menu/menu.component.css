@@ -228,3 +228,20 @@ a {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
+
+.addIcon {
+  cursor: pointer;
+
+}
+
+.addIcon:hover {
+  color: blue;
+}
+
+.removeIcon {
+  cursor: pointer;
+}
+
+.removeIcon:hover {
+  color: blue;
+}

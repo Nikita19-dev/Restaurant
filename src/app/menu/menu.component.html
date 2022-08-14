@@ -49,12 +49,12 @@
                 <div class="cost_button">
                     <div class="cost">Rs.{{items.price}}/-</div>
                     <button mat-raised-button color="primary" (click)="addtoCart(i)"
-                        *ngIf="!cartkeys.includes(i.toString())">+
+                        *ngIf="!cartkeys.includes(i.toString()) || emptycart==true">+
                         Add</button>
-                    <div *ngIf="tempcart && cartkeys.includes(i.toString())" class="add-remove">
-                        <div class="removeicon">-</div>
+                    <div *ngIf="cartkeys.includes(i.toString()) && emptycart==false" class="add-remove">
+                        <div class="removeIcon" (click)="removefromCart(i)">-</div>
                         <div>{{tempcart[i]}}</div>
-                        <div class="addIcon">+</div>
+                        <div class="addIcon" (click)="addtoCart(i)" style="cursor: pointer;">+</div>
                     </div>
                 </div>
             </mat-card>

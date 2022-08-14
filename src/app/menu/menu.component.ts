@@ -13,6 +13,7 @@ export class MenuComponent implements OnInit {
   tempcart: any
   addtocartvisible = false
   cartkeys: string[] = []
+  emptycart = false
 
   addtoCart(id: any) {
 
@@ -30,6 +31,7 @@ export class MenuComponent implements OnInit {
         console.log("printing id in sec else condition ", this.tempcart[id])
 
       }
+      this.emptycart = false
       this.cartkeys = Object.keys(this.tempcart)
     }
     else {
@@ -42,8 +44,14 @@ export class MenuComponent implements OnInit {
 
 
     console.log("printing value tempcart", this.tempcart, this.tempcart[id].length)
-
-
+  }
+  removefromCart(id: any) {
+    if (this.tempcart[id] > 0) {
+      this.tempcart[id] = this.tempcart[id] - 1
+    }
+    if (this.tempcart[id] == 0) {
+      this.emptycart = true
+    }
 
 
 
