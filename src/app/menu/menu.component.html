@@ -41,23 +41,54 @@
                 </div>
             </div>
 
-            <mat-card class="example-card" *ngFor="let items of menu_items; let i=index">
-                <div class="image-flex">
-                    <img src="{{items.img_url}}" alt="sub-menu-image" class="sub-menu" id="sub-image_1">
+            <div class="mat-cart-class">
+                <div class="dishes-card">
+                    <mat-card class="example-card" *ngFor="let items of menu_items; let i=index">
+                        <div class="image-flex">
+                            <img src="{{items.img_url}}" alt="sub-menu-image" class="sub-menu" id="sub-image_1">
+                        </div>
+                        <div class="food-name">{{items.name}}</div>
+                        <div class="cost_button">
+                            <div class="cost">Rs.{{items.price}}/-</div>
+                            <button mat-raised-button (click)="addtoCart(items)"
+                                *ngIf="!cartkeys.includes(items.id.toString())">+
+                                Add</button>
+                            <div *ngIf="cartkeys.includes(items.id.toString())" class="add-remove">
+                                <div class="removeIcon" (click)="removefromCart(items)">-</div>
+                                <div>{{tempcart[items.id].qty}}</div>
+                                <div class="addIcon" (click)="addtoCart(items)" style="cursor: pointer;">+</div>
+                            </div>
+                        </div>
+                    </mat-card>
                 </div>
-                <div class="food-name">{{items.name}}</div>
-                <div class="cost_button">
-                    <div class="cost">Rs.{{items.price}}/-</div>
-                    <button mat-raised-button color="primary" (click)="addtoCart(i)"
-                        *ngIf="!cartkeys.includes(i.toString()) || emptycart==true">+
-                        Add</button>
-                    <div *ngIf="cartkeys.includes(i.toString()) && emptycart==false" class="add-remove">
-                        <div class="removeIcon" (click)="removefromCart(i)">-</div>
-                        <div>{{tempcart[i]}}</div>
-                        <div class="addIcon" (click)="addtoCart(i)" style="cursor: pointer;">+</div>
-                    </div>
+                <div class="cart" *ngIf="cartkeys.length!=0">
+                    <mat-card class="dishes-cart">
+                        <div class="cart-item">
+                            <div class="sub-cart"> Cart</div>
+                            <div class="noofitem">{{noOfItems}} Item</div>
+                        </div>
+                        <div class="cartarray">
+                            <div class="name-price" *ngFor="let items of cartArray; let i=index"><span
+                                    class="itemname">{{items.name}}</span>
+                                <div *ngIf="cartkeys.includes(items.id.toString())" class="add-remove">
+                                    <div class="removeIcon" (click)="removefromCart(items)">-</div>
+                                    <div>{{tempcart[items.id].qty}}</div>
+                                    <div class="addIcon" (click)="addtoCart(items)" style="cursor: pointer;">+</div>
+                                </div>
+                                <div class="item-price">{{items.price*items.qty}}</div>
+                            </div>
+                        </div>
+                        <div class="total">
+                            <div>Sub Total</div>
+                            <div class="finaltotal">{{ finalTotal}}</div>
+                        </div>
+                        <button mat-raised-button color="primary">CHECKOUT
+                            <!-- <mat-icon>arrow_right_alt</mat-icon> -->
+                        </button>
+
+                    </mat-card>
                 </div>
-            </mat-card>
+            </div>
 
         </div>
     </div>

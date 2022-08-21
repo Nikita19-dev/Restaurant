@@ -165,7 +165,7 @@
 
 .dishtype:hover {
   background-color: #1d4a4da1;
-  color: blue;
+  color: white;
 }
 
 
@@ -235,7 +235,7 @@ a {
 }
 
 .addIcon:hover {
-  color: blue;
+  color: white;
 }
 
 .removeIcon {
@@ -243,5 +243,52 @@ a {
 }
 
 .removeIcon:hover {
-  color: blue;
+  color: white;
+}
+
+.dishes-card {
+  display: flex;
+  flex-wrap: wrap;
+  /* margin-left: -10rem; */
+}
+
+.mat-cart-class {
+  display: flex;
+}
+
+
+.cart {
+  height: fit-content;
+  position: sticky;
+  top: 16%;
+
+}
+
+.sub-cart {
+  font-size: 32px;
+  font-weight: 600;
+  padding-bottom: 18px;
+}
+
+.cart-item {
+  font-size: 20px;
+  padding-bottom: 18px;
+}
+
+.name-price {
+  display: flex;
+}
+
+.item-price {
+  margin: 0.5rem 2rem;
+}
+
+.add-remove {
+  margin: 0.5rem 1rem;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem 0.5rem;
 }
