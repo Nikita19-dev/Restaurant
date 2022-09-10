@@ -23,8 +23,10 @@
   position: absolute;
   /* position: relative; */
   bottom: 56%;
-  left: 50%;
-  font-size: 4rem
+
+  font-size: 4rem;
+  text-align: center;
+  width: 100%;
 }
 
 .navbar {
@@ -78,7 +80,7 @@
 
 .example-card {
 
-  width: 16vw;
+  width: 19vw;
   min-height: 37vh;
   background-color: #1d4a4da1;
   margin: 1rem;
