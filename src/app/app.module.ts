@@ -16,6 +16,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatRadioModule } from '@angular/material/radio';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { FoodInfoComponent } from './food-info/food-info.component';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 
 
@@ -27,6 +31,8 @@ import { MatRadioModule } from '@angular/material/radio';
     ContactComponent,
     LocateComponent,
     MenuComponent,
+    CheckoutComponent,
+    FoodInfoComponent,
 
   ],
   imports: [
@@ -42,7 +48,9 @@ import { MatRadioModule } from '@angular/material/radio';
     MatCheckboxModule,
     MatIconModule,
     MatSnackBarModule,
-    MatRadioModule
+    MatRadioModule,
+    MatDialogModule,
+
 
 
   ],
