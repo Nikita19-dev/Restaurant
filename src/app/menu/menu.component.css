@@ -21,6 +21,7 @@
   margin-top: -10vh;
   height: 8vh;
   position: absolute;
+  /* position: relative; */
   bottom: 56%;
   left: 50%;
   font-size: 4rem
@@ -81,6 +82,7 @@
   min-height: 37vh;
   background-color: #1d4a4da1;
   margin: 1rem;
+  cursor: pointer;
 
 }
 

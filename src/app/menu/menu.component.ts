@@ -1,6 +1,10 @@
 import { SelectorMatcher } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
+import { CartService } from '../cart.service';
+import { FoodInfoComponent } from '../food-info/food-info.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-menu',
@@ -25,6 +29,7 @@ export class MenuComponent implements OnInit {
   globalType: string = ""
   searchdish: any
   searchError: string = "";
+
 
   calculateTotal() {
     let total = 0;
@@ -371,7 +376,11 @@ export class MenuComponent implements OnInit {
   }
 
 
-
+  checkout() {
+    this.cartservice.cartdata = this.cartArray
+    console.log("cart array data", this.cartArray)
+    this.router.navigate(['/checkout'])
+  }
 
 
 
@@ -579,11 +588,25 @@ export class MenuComponent implements OnInit {
 
   ]
 
+  navigate() {
+    this.router.navigate(['foodinfo'])
+  }
+  image() {
+
+  }
 
 
+  constructor(private cartservice: CartService, private router: Router, public dialog: MatDialog) { }
+
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(FoodInfoComponent, {
+      panelClass: 'custom-dialog-container',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+  }
 
 
-  constructor() { }
 
   ngOnInit(): void {
     this.selectedMenuItems = this.menu_items.filter(item => item.recommended === true);
