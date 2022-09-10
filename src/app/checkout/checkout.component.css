@@ -1,0 +1,96 @@
+* {
+    font-family: 'Poppins', sans-serif;
+
+}
+
+.navbar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+    background-color: #1D4A4D;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 8%;
+    font-size: 2rem;
+    padding-left: 2%;
+    color: white;
+    z-index: 3;
+
+}
+
+#Brand {
+    font-family: 'Great Vibes', cursive !important;
+    color: white;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.cart {
+    margin-top: 20vh;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.sub-cart {
+    font-size: 32px;
+    font-weight: 600;
+    padding-bottom: 18px;
+}
+
+.cart-item {
+    font-size: 20px;
+    padding-bottom: 18px;
+}
+
+.name-price {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 1rem;
+    margin: 0.5rem 0.5rem;
+}
+
+.add-remove {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border: 1px solid #9e9e9e;
+    width: 50%;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin: 0.5rem 0.5rem;
+    width: 50%;
+}
+
+
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.5rem 0.5rem;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.dishes-cart {
+    width: 28vw;
+    padding: 0.5rem;
+    margin-right: 2rem;
+}
+
+.removeIcon-1:hover {
+    color: #1D4A4D;
+}
+
+.addIcon-1:hover {
+    color: #1D4A4D;
+}
+
+.dishtype-selected {
+    color: #1d4a4d;
+    font-weight: 800;
+}
