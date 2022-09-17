@@ -94,3 +94,33 @@ a {
     color: #1d4a4d;
     font-weight: 800;
 }
+
+.adress-form,
+.sub-button {
+    display: flex;
+    justify-content: center;
+
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    width: 45vw;
+    margin-top: -16rem;
+    margin-left: 17rem;
+}
+
+img {
+    width: 5rem;
+    border-radius: 50%;
+    height: 5rem;
+    margin-right: 0.5rem;
+    transition-duration: 2s;
+    transition-timing-function: ease;
+
+}
+
+img:hover {
+    transform: scale(1.2);
+
+}

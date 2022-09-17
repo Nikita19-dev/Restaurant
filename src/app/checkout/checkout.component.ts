@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { CartService } from '../cart.service';
 
 @Component({
@@ -12,13 +14,23 @@ export class CheckoutComponent implements OnInit {
   checkoutvalues: any;
   noOfItems: any;
   finalTotal: any;
+  contactform: any;
 
-  constructor(private cartservice: CartService) {
+  constructor(private cartservice: CartService, private _snackBar: MatSnackBar, private formBuilder: FormBuilder) {
 
   }
 
 
   ngOnInit(): void {
+
+    this.contactform = this.formBuilder.group({
+      username: ['', [Validators.required]],
+      phoneno: ['', Validators.required],
+      emailid: ['', Validators.email],
+      address: ['', Validators.required]
+
+
+    })
     // once everything is loaded we will push data inside that
     console.log("cartservice ", this.cartservice.cartdata)
     this.checkoutdata = {}
@@ -95,6 +107,9 @@ export class CheckoutComponent implements OnInit {
     )
     console.log("subtotal:", total)
     this.finalTotal = total
+  }
+  openSnackBar() {
+    this._snackBar.open("Hurrey!🙂. Your order is placed successfully", '', { duration: 1000 });
   }
 
 }

@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
 import { CartService } from '../cart.service';
 import { FoodInfoComponent } from '../food-info/food-info.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { FoodService } from '../food.service';
 
 @Component({
   selector: 'app-menu',
@@ -17,7 +18,6 @@ export class MenuComponent implements OnInit {
   tempcart: any
   addtocartvisible = false
   cartkeys: string[] = []
-  emptycart = false
   noOfItems = 0
   cartArray: any = []
   finalTotal: number = 0;
@@ -32,19 +32,22 @@ export class MenuComponent implements OnInit {
 
 
   calculateTotal() {
+    let noofItems = 0
     let total = 0;
     this.cartArray.forEach(
       (cart: any) => {
         total = total + cart.qty * cart.price;
+        noofItems = noofItems + cart.qty
       }
 
     )
     console.log("subtotal:", total)
     this.finalTotal = total
+    this.noOfItems = noofItems
   }
 
   addtoCart(item: any) {
-    this.noOfItems = this.noOfItems + 1;
+
     console.log("printing id", item.id)
     if (this.tempcart) {
 
@@ -60,7 +63,7 @@ export class MenuComponent implements OnInit {
         console.log("printing id in sec else condition ", this.tempcart[item.id])
 
       }
-      this.emptycart = false
+
       this.cartkeys = Object.keys(this.tempcart)
       this.cartArray = Object.values(this.tempcart)
     }
@@ -79,7 +82,7 @@ export class MenuComponent implements OnInit {
 
   }
   removefromCart(items: any) {
-    this.noOfItems = this.noOfItems - 1;
+
     if (this.tempcart[items.id].qty > 0) {
       this.tempcart[items.id].qty = this.tempcart[items.id].qty - 1
 
@@ -413,7 +416,8 @@ export class MenuComponent implements OnInit {
       category: "veg",
       subcategory: "starter",
       recommended: true,
-      rating: 3.5
+      rating: 3.5,
+      fooddesc: "A delightfully flavorful dish prepared with crunchy fried gobi, tossed in a wok with fresh veggies, chilli sauce and other masalas."
 
     },
     {
@@ -429,7 +433,7 @@ export class MenuComponent implements OnInit {
     },
     {
       id: 3,
-      name: "Tandoori Murgh Tikka ",
+      name: "Tandoori Chicken Tikka ",
       price: 300,
       img_url: "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1024/fd1jk23t6tewsguwbugj",
       category: "non-veg",
@@ -585,6 +589,36 @@ export class MenuComponent implements OnInit {
       recommended: false,
       rating: 5.0
     },
+    {
+      id: 18,
+      name: "Veg Biryani Rice",
+      price: 210,
+      img_url: "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1024/yiiln3ntc7cwm51l9lhi",
+      category: "veg",
+      subcategory: "Main",
+      recommended: true,
+      rating: 5.0
+    },
+    {
+      id: 19,
+      name: "Kadai Vegetable",
+      price: 340,
+      img_url: "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1024/qte81hnpoxr4xksp8xeh",
+      category: "veg",
+      subcategory: "Main",
+      recommended: true,
+      rating: 4.5
+    },
+    {
+      id: 20,
+      name: "Kothimeera Paneer Curry",
+      price: 245,
+      img_url: "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1024/dfyl6yogoihcibzpuebo",
+      category: "veg",
+      subcategory: "Main",
+      recommended: true,
+      rating: 4.5
+    }
 
   ]
 
@@ -596,14 +630,59 @@ export class MenuComponent implements OnInit {
   }
 
 
-  constructor(private cartservice: CartService, private router: Router, public dialog: MatDialog) { }
+  constructor(private cartservice: CartService, private router: Router, public dialog: MatDialog, private food: FoodService) { }
 
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(FoodInfoComponent, {
-      panelClass: 'custom-dialog-container',
-      enterAnimationDuration,
-      exitAnimationDuration,
+  openDialog(selecteddish: any): void {
+    let cartqty = 0
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.panelClass = 'custom-dialog-container'
+    if (this.tempcart && this.tempcart[selecteddish.id]?.qty) {
+      cartqty = this.tempcart[selecteddish.id].qty
+    }
+
+    dialogConfig.data = { ...selecteddish, qty: cartqty }
+    let dialogRef = this.dialog.open(FoodInfoComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(item => {
+      console.log(`Dialog sent: ${item}`);
+      console.log("itemsid ", JSON.parse(item))
+      item = JSON.parse(item)
+      if (this.tempcart) {
+
+        if (this.tempcart[item.id]) {
+          console.log("printing id in if condition ", item)
+          this.tempcart[item.id].qty = item.qty
+        }
+        else {
+          this.tempcart[item.id] = { ...item }
+        }
+        if (this.tempcart[item.id].qty == 0) {
+          delete this.tempcart[item.id]
+        }
+        this.cartkeys = Object.keys(this.tempcart)
+        this.cartArray = Object.values(this.tempcart)
+      }
+      else {
+        if (item.qty > 0) {
+          //which ever first value it goes it stores as key then it go on adding value
+          this.tempcart = {}
+          this.tempcart[item.id] = { ...item }
+          this.cartkeys = Object.keys(this.tempcart)
+          this.cartArray = Object.values(this.tempcart)
+        }
+      }
+      this.calculateTotal()
+
     });
+
+
+
+    this.food.fooddata = selecteddish
+    this.food.overalldata = this.selectedMenuItems;
+    this.food.foodcart = this.cartkeys
+    this.food.foodcartvalues = this.cartArray
+    this.food.tempcartvalue = this.tempcart
+
+    console.log("foodinfo", this.food.fooddata)
   }
 
 

@@ -9,11 +9,15 @@
 <div class="cart" *ngIf="checkoutkeys.length!=0">
     <mat-card class="dishes-cart">
         <div class="cart-item">
-            <div class="sub-cart"> Cart</div>
+            <div class="sub-cart"> Checkout</div>
+
             <div class="noofitem">{{noOfItems}} Item</div>
         </div>
         <div class="cartarray">
             <div class="name-price" *ngFor="let items of checkoutvalues ; let i=index">
+                <div class="image-flex">
+                    <img src="{{items.img_url}}" alt="sub-menu-image" class="sub-menu" id="sub-image_1">
+                </div>
                 <div>{{items.name}}</div>
 
                 <div *ngIf="checkoutkeys.includes(items.id.toString())" class="add-remove">
@@ -26,7 +30,8 @@
             </div>
         </div>
         <div class="total">
-            <div>Sub Total</div>
+            <div>TO PAY
+            </div>
             <div class="finaltotal">₹{{ finalTotal}}</div>
         </div>
         <!-- <button mat-raised-button class="check">CHECKOUT
@@ -35,3 +40,29 @@
 
     </mat-card>
 </div>
+
+<form [formGroup]="contactform" class="contact-form">
+    <mat-form-field appearance="outline">
+        <input matInput placeholder="Name" id="username" name="username" formControlName="username">
+
+        <mat-error *ngIf="contactform.controls['username'].invalid && (contactform.controls['username'].dirty ||
+            contactform.controls['username'].touched)" class="alert">
+            <span *ngIf="contactform.controls['username'].errors.required">
+                Please enter username
+            </span>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <input matInput placeholder="PhoneNo" id="phoneno" name="phoneno" formControlName="phoneno">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <input matInput placeholder="Email" id="emailid" name="emailid" formControlName="emailid">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <input matInput placeholder="address" id="address" name="addtress" formControlName="address">
+    </mat-form-field>
+    <div class="sub-button">
+        <button mat-stroked-button (click)="openSnackBar()" [disabled]="contactform.invalid">Submit</button>
+    </div>
+
+</form>

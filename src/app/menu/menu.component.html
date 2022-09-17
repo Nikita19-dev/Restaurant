@@ -59,7 +59,13 @@
             <div class="mat-cart-class" [ngStyle]="cartkeys.length!=0 ? {'margin-left': '0'} : {'margin-left': '6vw'}">
                 <div class="dishes-card">
                     <mat-card class="example-card" *ngFor="let items of selectedMenuItems ; let i=index">
-                        <div class="image-flex">
+                        <div class="sqr" [ngClass]="items.category==='veg'?'sqr-veg':'sqr-nveg'">
+                            <div class="circle" [ngClass]="items.category==='veg'?'circle-veg ':'circle-nveg'">
+                            </div>
+                        </div>
+
+
+                        <div class="image-flex" (click)="openDialog(items)">
                             <img src="{{items.img_url}}" alt="sub-menu-image" class="sub-menu" id="sub-image_1">
                         </div>
                         <div class="food-name">{{items.name}}</div>

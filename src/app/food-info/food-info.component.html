@@ -1,6 +1,22 @@
-<div class="image-flex" *ngFor="let items of selected_menu_items">
+<div class="image-flex">
+    <img src="{{foodinfo.img_url}}" alt="sub-menu-image" class="sub-menu" id="sub-image_1">
+</div>
+<div class="cost_button">
+    <button mat-raised-button (click)="addtoCart()" *ngIf="data.qty===0" class="add-button">+
+        Add</button>
+    <div class="add-remove" *ngIf="data.qty!==0">
+        <div class="removeIcon-1" (click)="removefromCart()" style="cursor: pointer;">-
+        </div>
+        <div>{{data.qty}}</div>
 
-    <div class="image-flex">
-        <img src="{{items.img_url}}" alt="sub-menu-image" class="sub-menu" id="sub-image_1">
+        <div class="addIcon-1" (click)="addtoCart()" style="cursor: pointer;">+</div>
     </div>
+</div>
+
+<div class="foodname">
+    {{foodinfo.name}}
+</div>
+<div class="cost">Rs.{{foodinfo.price}}/-</div>
+<div class="foodinfo">
+    {{foodinfo.fooddesc}}
 </div>
