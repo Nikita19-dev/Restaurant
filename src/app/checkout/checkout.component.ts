@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class CheckoutComponent implements OnInit {
   finalTotal: any;
   contactform: any;
 
-  constructor(private cartservice: CartService, private _snackBar: MatSnackBar, private formBuilder: FormBuilder) {
+  constructor(private router: Router, private cartservice: CartService, private _snackBar: MatSnackBar, private formBuilder: FormBuilder) {
 
   }
 
@@ -33,16 +34,22 @@ export class CheckoutComponent implements OnInit {
     })
     // once everything is loaded we will push data inside that
     console.log("cartservice ", this.cartservice.cartdata)
+
     this.checkoutdata = {}
-    this.cartservice.cartdata.forEach((cart: any) => {
-      this.checkoutdata[cart.id] = cart
-    })
-    console.log("checkoutdata ", this.checkoutdata)
-    this.checkoutkeys = Object.keys(this.checkoutdata)
-    this.noOfItems = this.checkoutkeys.length
-    this.checkoutvalues = Object.values(this.checkoutdata)
-    console.log("ckeckoutkeys and Checkoutvalue", this.checkoutkeys, this.checkoutvalues)
-    this.calculateTotal()
+    if (this.cartservice.cartdata) {
+      this.cartservice.cartdata.forEach((cart: any) => {
+        this.checkoutdata[cart.id] = cart
+      })
+      console.log("checkoutdata ", this.checkoutdata)
+      this.checkoutkeys = Object.keys(this.checkoutdata)
+      this.noOfItems = this.checkoutkeys.length
+      this.checkoutvalues = Object.values(this.checkoutdata)
+      console.log("ckeckoutkeys and Checkoutvalue", this.checkoutkeys, this.checkoutvalues)
+      this.calculateTotal()
+    }
+    else {
+      this.router.navigate(['/menu'])
+    }
   }
   addtoCart(item: any) {
     this.noOfItems = this.noOfItems + 1;
@@ -93,6 +100,9 @@ export class CheckoutComponent implements OnInit {
 
     this.checkoutkeys = Object.keys(this.checkoutdata)
     this.checkoutvalues = Object.values(this.checkoutdata)
+    if (this.checkoutkeys.length == 0) {
+      this.router.navigate(['/menu'])
+    }
 
     this.calculateTotal()
 
@@ -109,7 +119,7 @@ export class CheckoutComponent implements OnInit {
     this.finalTotal = total
   }
   openSnackBar() {
-    this._snackBar.open("Hurrey!🙂. Your order is placed successfully", '', { duration: 1000 });
+    this._snackBar.open("Hurrey!🙂. Your order is placed successfully", '', { duration: 2000 });
   }
 
 }
