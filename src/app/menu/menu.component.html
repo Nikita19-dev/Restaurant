@@ -68,16 +68,18 @@
                         <div class="image-flex" (click)="openDialog(items)">
                             <img src="{{items.img_url}}" alt="sub-menu-image" class="sub-menu" id="sub-image_1">
                         </div>
-                        <div class="food-name">{{items.name}}</div>
-                        <div class="cost_button">
-                            <div class="cost">Rs.{{items.price}}/-</div>
-                            <button mat-raised-button (click)="addtoCart(items)"
-                                *ngIf="!cartkeys.includes(items.id.toString())">+
-                                Add</button>
-                            <div *ngIf="cartkeys.includes(items.id.toString())" class="add-remove">
-                                <div class="removeIcon" (click)="removefromCart(items)">-</div>
-                                <div>{{tempcart[items.id].qty}}</div>
-                                <div class="addIcon" (click)="addtoCart(items)" style="cursor: pointer;">+</div>
+                        <div class="wrapper-name-cost">
+                            <div class="food-name">{{items.name}}</div>
+                            <div class="cost_button">
+                                <div class="cost">Rs.{{items.price}}/-</div>
+                                <button mat-raised-button (click)="addtoCart(items)"
+                                    *ngIf="!cartkeys.includes(items.id.toString())">+
+                                    Add</button>
+                                <div *ngIf="cartkeys.includes(items.id.toString())" class="add-remove">
+                                    <div class="removeIcon" (click)="removefromCart(items)">-</div>
+                                    <div>{{tempcart[items.id].qty}}</div>
+                                    <div class="addIcon" (click)="addtoCart(items)" style="cursor: pointer;">+</div>
+                                </div>
                             </div>
                         </div>
                     </mat-card>

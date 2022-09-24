@@ -102,6 +102,7 @@
 .image-flex {
   display: flex;
   justify-content: center;
+  margin-top: -1rem;
 }
 
 .food-name {
@@ -112,6 +113,7 @@
   margin-bottom: 1rem;
   margin-right: 0.5rem;
   margin-left: 0.5rem;
+  line-height: 1.2;
 }
 
 .cost_button {
@@ -187,6 +189,7 @@
 
 .check {
   background-color: #1d4a4da1;
+  font-weight: 600;
 }
 
 
@@ -216,6 +219,8 @@ a {
   height: fit-content;
   background-color: white;
   z-index: 2;
+  padding-bottom: 1rem;
+  padding-top: 0.2rem;
 }
 
 .check-box {
@@ -383,4 +388,8 @@ a {
   width: 0.5rem;
   border-radius: 50%;
   background: red;
+}
+
+.wrapper-name-cost {
+  margin-top: auto;
 }
