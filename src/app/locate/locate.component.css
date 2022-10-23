@@ -1,0 +1,62 @@
+.navbar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+    background-color: #1D4A4D;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 8%;
+    font-size: 2rem;
+    padding-left: 2%;
+    color: white;
+    z-index: 3;
+
+}
+
+.container {
+    position: relative;
+
+    color: white;
+    overflow: hidden;
+    height: 100vh
+}
+
+.locate {
+    height: fit-content;
+    width: 100%;
+    object-fit: cover;
+}
+
+.button-locate {
+    position: inherit;
+}
+
+.branch {
+    height: 14rem;
+    width: 16rem;
+    border: 1px solid #9e9e9e !important;
+    background-color: #1d4a4d;
+    border-radius: 25px;
+    padding: 20px;
+}
+
+.super-div {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 13rem;
+}
+
+.header-1 {
+    display: flex;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+.branch {
+    flex-direction: column;
+    display: flex;
+    line-height: 1.5rem;
+    font-family: 'Poppins', sans-serif;
+}

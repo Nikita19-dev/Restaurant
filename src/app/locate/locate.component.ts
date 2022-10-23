@@ -11,5 +11,6 @@ export class LocateComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  
 
 }
