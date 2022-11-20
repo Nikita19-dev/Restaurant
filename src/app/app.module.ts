@@ -19,6 +19,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { FoodInfoComponent } from './food-info/food-info.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { LocationStrategy, HashLocationStrategy } from &#39; @angular/common&#39;;
 
 
 
@@ -54,7 +55,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 
 
   ],
-  providers: [],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
