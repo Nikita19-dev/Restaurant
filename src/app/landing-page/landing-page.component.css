@@ -53,12 +53,12 @@ a:active {
 
 .item {
   position: absolute;
-  bottom: 45%;
+  bottom: 40%;
   right: 5%;
   font-size: 2rem;
   /* width: -moz-fit-content; */
   width: 40%;
-  line-height: 1
+  line-height: 1.1
 }
 
 .flex-container {
